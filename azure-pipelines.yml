@@ -1,0 +1,23 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+- script: |
+    cd <seu-repositorio>
+    git config user.email "rafaelperezsilva2005@gmail.com"
+    git config user.name "RafaPerez05"
+    git push https://RafaPerez05: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@https://dev.azure.com/Teste45/LastProject/_git/T45 master
+  displayName: 'Push to Azure'
